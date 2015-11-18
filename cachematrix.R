@@ -1,7 +1,9 @@
-## Put comments here that give an overall description of what your
-## functions do
+## By: Hristiyan Manolov
+## Date: 11/17/2015
+## Code: These two function are intended to create a matrix that could store its
+## inverse in cache and retrive it from memory if it has already been computed once
 
-## Write a short comment describing this function
+## This function creates a matrix that can store its inverse in cache
 
 makeCacheMatrix <- function(x = matrix()) {
 
@@ -11,7 +13,7 @@ makeCacheMatrix <- function(x = matrix()) {
         m <<- NULL
     }
     get <- function() x
-    setinverse <- function(mean) m <<- solve(x)
+    setinverse <- function(inv) m <<- inv
     getinverse <- function() m
     list(set = set, get = get,
          setinverse = setinverse,
@@ -20,7 +22,9 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## The cacheSolve function takes a matrix or multiple matricies as input 
+## and if their inverse is already been calcualted then it gets recalled from cache.
+## If they are not found then they are computed and stored in cache.
 
 cacheSolve <- function(x, ...) {
     
@@ -30,7 +34,6 @@ cacheSolve <- function(x, ...) {
         return(m)
     }
     data <- x$get()
-    message("solving")
     m <- solve(data, ...)
     x$setinverse(m)
     m    
